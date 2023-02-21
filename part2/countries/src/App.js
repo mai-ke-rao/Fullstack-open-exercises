@@ -34,41 +34,7 @@ import { useEffect, useState } from "react";
  )
   }
  }
- // my weather component wont render I am not able to trigger it in anyway.
- /*const Weather = ({results}) => 
- {
-  axios
-  .get(`http://api.openweathermap.org/geo/1.0/direct?q=${results[0].capital[0]},${results[0].name.common}&appid=f3200ecd8356283968aedae50888fb80`)
-  .then(response => 
-   { var lat =  response.data[0].lat;
-    var lon = response.data[0].lon; 
-    axios 
- .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=f3200ecd8356283968aedae50888fb80`)
-   .then(response => 
-    { 
-      var hourly = response.data;
-      var temp = response.data.main.temp
-      var wind = response.data.wind.speed
-     axios
-     .get(` http://openweathermap.org/img/wn/${hourly.weather[0].icon}@2x.png`)
-     .then(response =>{
-      console.log(wind,temp)
-      //console.log(response.data);
-     return(<div>
-      {console.log(wind, String(temp))} what going on 
-      <p>
-      whats realljy good njigga
-     </p>
-       <p>Temperature: {String(temp)}
-    
-       <br>Wind: {String(wind)}</br></p>
-      
-        </div>)
-     })
-    }) 
-  })
-  } 
-  */
+ 
   let podaci = {
     temp : 0,
     wind : 0,
