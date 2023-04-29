@@ -1,0 +1,2 @@
+Bio sam Pogresio sam jer sam direktno u storeu definisao reducere, dok sam u index.js-u upotrebio configurestore.
+Reduceri su mi ostali kao action creatori
