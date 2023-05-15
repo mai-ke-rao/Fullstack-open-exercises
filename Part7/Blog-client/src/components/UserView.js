@@ -33,7 +33,7 @@ console.log('juzer', users);
             {users.map(user => <tr key={user.id}><td key={user.id}><Link to={`/users/${user.id}`}>{user.username}</Link></td><td>{user.blogCount}</td></tr>)}
             </tbody>
         </table>
-        {setTimeout(() => window.scrollBy(0, 1100),350)}
+        
         </div>
     )
 }
