@@ -9,25 +9,30 @@ import { Navigate } from "react-router-dom";
 
  
 
-const BlogFull = ({blogs, addLike}) => {
+const BlogFull = ({blogs, addLike, remove}) => {
   const notification = useSelector(state=> state.notification)
   const [tekst, setTekst] = useState('')
   const [ajdi, setAjdi] = useState('')
-  const navigate = useNavigate()
+//  const navigate = useNavigate()
   const dispatch = useDispatch()
-  async function remove(blog) {
+
+
+  /*async function remove(blog) {
     blogService.kick(blog).then((r) => {
       const temp = blogs.filter((blo) => blo.id !== blog.id);
 //hmmm okej ovo vraca isfilitrarane blogeve
 
- navigate('/')
+ navigate('/blogs')
       dispatch(getBlogsReducer(temp));
      
-    });}
- var id = useParams().id
+    });}*/
+ 
+ 
+    var id = useParams().id
  console.log('id is :',id);
  const blog = blogs.find(blog => blog.id === id)
  //setAjdi(id)
+
 
  const handleComment = async (event) => {
   console.log('problem is retarded');
@@ -81,7 +86,7 @@ return(<div>
         </ul>
             
         </div>
-        {setTimeout(() => window.scrollBy(0, 1100),350)}
+        
         </div>
       
 )
