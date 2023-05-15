@@ -35,6 +35,7 @@ const user = useSelector(state => state.user)
 const blogs = useSelector(state=> state.blogs) 
 const notification = useSelector(state=> state.notification)
 //see blogs in backend: done
+const navigate = useNavigate()
 const dispatch = useDispatch()
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -116,14 +117,9 @@ async function handleCreate (body) {
 
             dispatch(setNotification(`A new blog  is created `,5))
         
-
-         /* setNotification(`A new blog  is created `)
-          setTimeout(() => {
-            setNotification(``)
-          }, 5000)*/
           blogFormRef.current.toggleVisibility()
          })
-         console.log('ovo je user u app.dzijesu', user);
+ 
          let x = true
   blogService  //PROBLEM JE JER USER UVEK DRZI JEDAN TE ISTI BLOGCOUNT
   .countBlog(user, x).then(returnedinfo => {
@@ -137,6 +133,25 @@ async function handleCreate (body) {
     console.log("Code didtn do");
     }
 }
+
+
+async function remove(blog) {
+  blogService.kick(blog).then((r) => {
+    const temp = blogs.filter((blo) => blo.id !== blog.id);
+//hmmm okej ovo vraca isfilitrarane blogeve
+
+navigate('/blogs')
+    dispatch(getBlogsReducer(temp));
+  })
+    let x = false
+    blogService  //PROBLEM JE JER USER UVEK DRZI JEDAN TE ISTI BLOGCOUNT
+    .countBlog(user, x).then(returnedinfo => {
+      var tempino = users.map(user => user.id === returnedinfo.data.id ? returnedinfo.data : user)
+      dispatch(setUser(returnedinfo.data))
+      setUsers(tempino)
+   
+  });}
+
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
@@ -182,7 +197,7 @@ async function handleCreate (body) {
     <div>
      <div className="navbar">
          
-  <p><Link to={'/'}>Blogs</Link>  <Link to={'/users'}>Users</Link> <span>user: {user.username} - {user.name} is logged in <button onClick={logout} id='Logout'> logout</button></span></p>
+  <p><Link to={'/blogs'}>Blogs</Link>  <Link to={'/users'}>Users</Link> <span>user: {user.username} - {user.name} is logged in <button onClick={logout} id='Logout'> logout</button></span></p>
 </div>
     <Toggable buttonLabel="Create new" ref={blogFormRef}>
     
@@ -193,17 +208,27 @@ async function handleCreate (body) {
 
     {notification}
  
-      {blogevi.map(blog => 
-        <Link to={`/blog/${blog.id}`} style={{textDecoration: 'none'}}> <Blog key={blog.id} blog={blog} blogs={blogs} addLike={addLike}/> </Link>)}
-       {/*  addlike i setblogs ukonio*/ }
+      {/*blogevi.map(blog => 
+        <Link to={`/blog/${blog.id}`} style={{textDecoration: 'none'}}> <Blog key={blog.id} blog={blog} blogs={blogs} addLike={addLike}/> </Link>)*/}
+      
+     
        <Routes>
- 
-  <Route path='/blog/:id' element={<BlogFull blogs ={blogevi} addLike={addLike} />}/>
+       <Route path='/blogs' element={<Quotes blogevi={blogevi} blogs={blogs} addLike={addLike}/>}/>
+  <Route path='/blog/:id' element={<BlogFull blogs ={blogevi} addLike={addLike} remove={remove}/>}/>
   <Route path='/users' element={ <UserView users={users}/>}/>
   <Route path='/users/:id' element={<><UserView users={users}/><UserBlogs users={users}/></>}/>
 </Routes>
+
     </div>
   )}
+}
+const Quotes = ({blogevi, blogs, addLike}) => {
+return(
+  <div>
+  {blogevi.map(blog => 
+    <Link to={`/blog/${blog.id}`} style={{textDecoration: 'none'}}> <Blog key={blog.id} blog={blog} blogs={blogs} addLike={addLike}/> </Link>)}
+    </div>
+)
 }
 
 
