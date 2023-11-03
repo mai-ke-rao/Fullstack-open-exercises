@@ -1,0 +1,31 @@
+GET http://localhost:3003/api/blogs
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlcm4iLCJpZCI6IjY0NWRmZWIyYjFlZDEyMGJjODhkMWZmYSIsImlhdCI6MTY5ODc2Mjc4OX0.EZcL6DVkGTa-XtRPXy0AyPE79hpwGAfCD5eR2tzyyAE
+
+{
+    "title": "idemo",
+  "author": "dalje",
+  "url": "gadfasdgfasdfasdre",
+  "likes": 31
+}
+###
+PUT http://localhost:3003/api/blogs/6419cef1b1e03a62e9407bcd
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlcmlsIFBlc3RvbiIsImlkIjoiNjQxMzYwM2NjMDk5ZjNjZTk2OTU2OWUzIiwiaWF0IjoxNjc5MzkwODM5fQ.LVBLt1rPQeG8hkLD57z4nVhTom3GKFTuGt4Nc9cQez4
+
+{
+    "title": "novi",
+  "author": "post",
+  "url": "gadfasdgfasdfasdre",
+  "likes": 19
+}
+###
+DELETE http://localhost:3003/api/blogs/5a422b891b54a676234d17fa HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlcm4iLCJpZCI6IjY0MThjOTBkZmZhZWQwODFjMWIzN2U2NiIsImlhdCI6MTY3OTQyMjY0MX0.Bx8jMoZReFwxw7WWlSiMQg3Hv9RG-r34rIVfvq0z7BE
+
+{
+    
+}
